@@ -1,0 +1,4 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1670250261749,724,HTTP Request,200,OK,Thread Group 1-1,text,true,,52015,116,1,1,https://anderscore.com/,626,0,543
+1670250263320,516,HTTP Request,200,OK,Thread Group 1-2,text,true,,52015,116,1,1,https://anderscore.com/,425,0,316
+1670250264987,423,HTTP Request,200,OK,Thread Group 1-3,text,true,,52015,116,1,1,https://anderscore.com/,328,0,254

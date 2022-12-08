@@ -1,0 +1,191 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Lektion 4 - Tests gegen verteilte Systeme / Server Mode</title><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"><link href="reveal.js-3.9.2/css/reveal.css" rel="stylesheet"><link href="reveal.js-3.9.2/plugin/title-footer/title-footer.css" rel="stylesheet"><link rel="stylesheet" href="reveal.js-3.9.2/css/theme/anderscore.css" id="theme"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"><style>/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+pre.CodeRay{background:#f7f7f8}
+.CodeRay .line-numbers{border-right:1px solid currentColor;opacity:.35;padding:0 .5em 0 0}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.75em}
+.CodeRay .line-numbers strong{color:#000}
+table.CodeRay{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.CodeRay td{vertical-align:top;line-height:inherit}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.code{padding:0 0 0 .75em}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}</style><link href="reveal.js-3.9.2/lib/css/zenburn.css" rel="stylesheet"><script>document.write( '<link rel="stylesheet" href="reveal.js-3.9.2/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script></head><body><div class="reveal"><div class="slides"><section id="_lektion_4_tests_gegen_verteilte_systeme_server_mode" data-state="no-title-footer"><h2>Lektion 4 - Tests gegen verteilte Systeme / Server Mode</h2></section>
+<section id="_remote_testing"><h2>Remote Testing</h2><div class="dlist"><dl><dt class="hdlist1">Bisher</dt><dd><div class="ulist"><ul><li><p>1:1 Testing</p></li><li><p>Managen und Durchführen der Tests auf einer Maschine</p></li><li><p>Problem: Überlast bei Simulation vieler User (Netzwerk und/oder Maschine)</p></li></ul></div></dd></dl></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="dlist"><dl><dt class="hdlist1">Jetzt</dt><dd><div class="ulist"><ul><li><p>Remote Testing</p></li><li><p>Ein Test-Client zum managen</p></li><li><p>Mehrere Test-Clients zum durchführen der Tests</p></li></ul></div></dd></dl></div></section>
+<section id="_remote_testing_2"><h2>Remote Testing</h2><div class="imageblock" style=""><img src="images/distributed_testing.png" alt="distributed testing" height="650"></div>
+<div class="ulist"><ul><li><p>Client sendet Testpläne zu den Servern</p></li><li><p>Ergebnisse der Sampler werden zum Client geschickt</p></li><li><p><strong>Achtung: Kein Load-Balance</strong> - Testplan mit 1000 Threads, 6 Server ergeben 6000 Threads!</p></li></ul></div></section>
+<section><section id="_schritt_1_nodes_konfigurieren"><h2>Schritt 1: Nodes konfigurieren</h2><div class="dlist"><dl><dt class="hdlist1"><strong>Alle</strong> Nodes (Client und Server)</dt><dd><div class="ulist"><ul><li><p>Besitzen die <strong>exakt</strong> selbe Version von JMeter</p></li><li><p>Besitzen die selbe Java Version</p></li><li><p>Besitzen ein Keystore für Remote Method Invocation über SSL</p></li><li><p>Beim Versenden von Daten: lokale Bereitstellung</p></li><li><p>Properties: <code>user.properties</code> pro Server definierbar</p></li></ul></div></dd></dl></div><div class="paragraph"><p>&#160;</p></div><div class="paragraph"><p><a href="https://jmeter.apache.org/usermanual/remote-test.html">&#8594; Guide: Remote Testing</a></p></div></section><section id="_rmi_keystore_erstellen"><h2>RMI Keystore erstellen</h2><div class="ulist"><ul><li><p>JMeter bring Skript mit</p></li><li><p><code>bin/create-rmi-keystore</code></p></li><li><p>Generiert ein key-pair mit 7 Tage Gültigkeit</p></li></ul></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="imageblock" style=""><img src="images/create_rmi_keystore.png" alt="create rmi keystore" height="400"></div></section></section>
+<section id="_schritt_2_server_starten" class="columns"><h2>Schritt 2: Server Starten</h2><div class="dlist"><dl><dt class="hdlist1">Skript ausführen</dt><dd><div class="ulist"><ul><li><p>Unix: <code>JMETER_HOME/bin/jmeter-server</code></p></li><li><p>Windows: <code>JMETER_HOME/bin/jmeter-server.bat</code></p></li></ul></div></dd></dl></div></section>
+<section id="_schritt_3_server_ip_konfigurieren"><h2>Schritt 3: Server-IP konfigurieren</h2><div class="dlist"><dl><dt class="hdlist1">IP der Server beim Client konfigurieren</dt><dd><div class="ulist"><ul><li><p>Properties: <code>remote_hosts</code> in <code>JMETER_HOME/bin/jmeter.properties</code></p></li><li><p>CLI: Mit Flag <code>-R</code> gefolgt von den IP der Server</p></li><li><p>Mehrere IP durch Komma getrennt</p></li></ul></div></dd></dl></div></section>
+<section id="_schritt_4a_client_jmeter_starten_gui"><h2>Schritt 4a: Client-JMeter starten (GUI)</h2><div class="paragraph"><p><strong>Run &#8594; Remote Start</strong></p></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="imageblock" style=""><img src="images/remote_testing_gui_start.png" alt="remote testing gui start" height="700"></div></section>
+<section id="_schritt_4b_client_jmeter_starten_cli"><h2>Schritt 4b: Client-JMeter starten (CLI)</h2><div class="dlist"><dl><dt class="hdlist1">Starten über</dt></dl></div>
+<pre class="CodeRay listingblock"><code>jmeter -n -t script.jmx -r</code></pre>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="dlist"><dl><dt class="hdlist1">oder</dt></dl></div>
+<pre class="CodeRay listingblock"><code>jmeter -n -t script.jmx -R server1,server2,…</code></pre>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="dlist"><dl><dt class="hdlist1">Weitere nützliche Flags</dt><dd><div class="ulist"><ul><li><p><code>-Gproperty=value</code> -  Property auf allen Servern definieren</p></li><li><p><code>-X</code> - Remote Server beim abschließen des Tests beenden</p></li></ul></div></dd></dl></div></section>
+<section id="_aufgabe_4_1_remote_testing"><h2>Aufgabe 4.1: Remote Testing</h2><div class="paragraph"><p>Erweitern Sie den vorherigen Performancetest um Remote Testing:</p></div>
+<div class="ulist"><ul><li><p>Laden Sie JMeter auf die RDP VM / Ihre lokale Maschine runter</p></li><li><p>Konfigurieren sie die Nodes (Client und Server)</p></li><li><p>Erstellen sie auf dem Client ein RMI Keystore und kopieren Sie dies auf den Servern (JMETER_HOME/bin)</p></li><li><p>Starten Sie die Server</p></li><li><p>Konfigurieren Sie die Server-IP auf den Client</p></li><li><p>Führen Sie den HelloWorld-Test remote durch</p></li></ul></div>
+<div class="paragraph"><p><strong>Hinweise:</strong></p></div>
+<div class="ulist"><ul><li><p>Bei Verbindungsproblemen versuchen Sie den Port festzusetzen.</p></li><li><p>Desweiteren betrachten Sie den <code>JMETER_HOME/bin/jmeter.log</code> für etwaige Fehlermeldungen</p></li><li><p>Bei "is a loopback address": Starten von JMeter-Client mit Parameter <code>-Djava.rmi.server.hostname=&lt;Ihre IP-Addresse&gt;</code></p></li></ul></div>
+<div class="paragraph"><p><a href="index.html#/_agenda">&#8594; Zurück zur Übersicht</a></p></div></section></div></div><script src="reveal.js-3.9.2/lib/js/head.min.js"></script><script src="reveal.js-3.9.2/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
+Reveal.initialize({
+  // Display controls in the bottom right corner
+  controls: true,
+  // Display a presentation progress bar
+  progress: true,
+  // Display the page number of the current slide
+  slideNumber: true,
+  // Push each slide change to the browser history
+  history: true,
+  // Enable keyboard shortcuts for navigation
+  keyboard: true,
+  // Enable the slide overview mode
+  overview: true,
+  // Vertical centering of slides
+  center: false,
+  // Enables touch navigation on devices with touch input
+  touch: true,
+  // Loop the presentation
+  loop: false,
+  // Change the presentation direction to be RTL
+  rtl: false,
+  // Turns fragments on and off globally
+  fragments: true,
+  // Flags if the presentation is running in an embedded mode,
+  // i.e. contained within a limited portion of the screen
+  embedded: false,
+  // Number of milliseconds between automatically proceeding to the
+  // next slide, disabled when set to 0, this value can be overwritten
+  // by using a data-autoslide attribute on your slides
+  autoSlide: 0,
+  // Stop auto-sliding after user input
+  autoSlideStoppable: true,
+  // Enable slide navigation via mouse wheel
+  mouseWheel: true,
+  // Hides the address bar on mobile devices
+  hideAddressBar: true,
+  // Opens links in an iframe preview overlay
+  previewLinks: false,
+  // Theme (e.g., beige, black, league, night, serif, simple, sky, solarized, white)
+  // NOTE setting the theme in the config no longer works in reveal.js 3.x
+  //theme: Reveal.getQueryHash().theme || 'anderscore',
+  // Transition style (e.g., none, fade, slide, convex, concave, zoom)
+  transition: Reveal.getQueryHash().transition || 'linear',
+  // Transition speed (e.g., default, fast, slow)
+  transitionSpeed: 'default',
+  // Transition style for full page slide backgrounds (e.g., none, fade, slide, convex, concave, zoom)
+  backgroundTransition: 'fade',
+  // Number of slides away from the current that are visible
+  viewDistance: 3,
+  // Parallax background image (e.g., "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'")
+  parallaxBackgroundImage: '',
+  // Parallax background size in CSS syntax (e.g., "2100px 900px")
+  parallaxBackgroundSize: '',
+
+  // The "normal" size of the presentation, aspect ratio will be preserved
+  // when the presentation is scaled to fit different resolutions. Can be
+  // specified using percentage units.
+  width: 1728,
+  height: 972,
+
+  // Factor of the display size that should remain empty around the content
+  margin: 0.1,
+
+  // Bounds for smallest/largest possible scale to apply to content
+  minScale: 0.2,
+  maxScale: 1.5,
+
+  // Optional libraries used to extend on reveal.js
+  dependencies: [
+      { src: 'reveal.js-3.9.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/title-footer/title-footer.js', async: true, callback: function()
+          {title_footer.initialize('Lasttests mit Apache JMeter', 'J. Lühr, A. Lam.', 'anderScore GmbH • Frankenwerft 35 • 50667 Köln');}},
+      { src: 'reveal.js-3.9.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js-3.9.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      
+      { src: 'reveal.js-3.9.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+  ]
+});</script></body></html>

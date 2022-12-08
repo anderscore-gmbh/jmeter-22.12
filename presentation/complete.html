@@ -1,0 +1,446 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Lasttests mit Apache JMeter</title><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"><link href="reveal.js-3.9.2/css/reveal.css" rel="stylesheet"><link href="reveal.js-3.9.2/plugin/title-footer/title-footer.css" rel="stylesheet"><link rel="stylesheet" href="reveal.js-3.9.2/css/theme/anderscore.css" id="theme"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"><style>/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+pre.CodeRay{background:#f7f7f8}
+.CodeRay .line-numbers{border-right:1px solid currentColor;opacity:.35;padding:0 .5em 0 0}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.75em}
+.CodeRay .line-numbers strong{color:#000}
+table.CodeRay{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.CodeRay td{vertical-align:top;line-height:inherit}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.code{padding:0 0 0 .75em}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}</style><link href="reveal.js-3.9.2/lib/css/zenburn.css" rel="stylesheet"><script>document.write( '<link rel="stylesheet" href="reveal.js-3.9.2/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );</script></head><body><div class="reveal"><div class="slides"><section id="_lasttests_mit_apache_jmeter" class="center text-center"><h2>Lasttests mit Apache JMeter</h2><div class="paragraph margin-bottom-default heading"><p>Willkommen zum Seminar</p></div>
+<div class="paragraph"><p><span class="image"><img src="images/teaser.jpg" alt="teaser" width="1200" height="450"></span></p></div>
+<div class="paragraph heading"><p>Apache JMeter Grundlagen und Praxis</p></div></section>
+<section id="_agenda"><h2>Agenda</h2><div class="paragraph"><p><a href="greeting.html">Begrüßung</a></p></div>
+<div class="olist arabic"><ol class="arabic"><li><p><a href="lesson01-intro.html">Einführung</a></p></li><li><p><a href="lesson02-elements.html">Elemente eines Testplans</a></p><div class="paragraph"><p>(<a href="lesson02-elements.html#/_thread_group">Thread Group</a>,
+<a href="lesson02-elements.html#/_samplers">Samplers</a>,
+<a href="lesson02-elements.html#/_logic_controllers">Controllers</a>,
+<a href="lesson02-elements.html#/_listeners">Listeners</a>,
+<a href="lesson02-elements.html#/_timers">Timers</a>,
+<a href="lesson02-elements.html#/_assertions">Assertions</a>,
+<a href="lesson02-elements.html#/_configuration_elements">Configuration Elements</a>)</p></div></li><li><p><a href="lesson03-building-testplan.html">Anwendungsbasierte Testpläne erstellen</a></p></li><li><p><a href="lesson04-distributed-testing.adoc">Tests auf verteilte Systeme (Server Mode)</a></p></li><li><p><a href="lesson05-best-practices.html">Best Practices</a></p></li></ol></div></section>
+<section id="_vorstellung" class="columns"><h2>Vorstellung</h2><div class="openblock two-col"><div class="content"><div class="paragraph heading"><p>Jan Lühr (M.Sc. Informatik)</p></div>
+<div class="ulist"><ul><li><p>Fokus</p><div class="ulist"><ul><li><p>IT-Trainer</p></li><li><p>Pragmatic Architect</p></li><li><p>Software Development</p></li><li><p>Build- and Deployment Engineering</p></li><li><p>Network- and Security-Techniques</p></li><li><p>Trainings, Artikel, Vorträge</p></li><li><p>Java, JavaScript, Ruby, …</p></li></ul></div></li></ul></div></div></div>
+<div class="imageblock" style=""><img src="images/jluehr.png" alt="jluehr"></div></section>
+<section id="_vorstellung_2" class="columns"><h2>Vorstellung</h2><div class="openblock two-col"><div class="content"><div class="paragraph heading"><p>André Lambertz (Softwareentwickler)</p></div>
+<div class="ulist"><ul><li><p>Mathematisch-Technischer Softwareentwickler</p></li><li><p>Seit über 2 Jahren bei anderScore</p></li><li><p>Schwerpunkte</p><div class="ulist"><ul><li><p>Java Entwicklung</p></li><li><p>Backend-Programmierung</p></li></ul></div></li><li><p>Unterwegs in Java, Python, JavaScript</p></li><li><p>Interessiert sich für/arbeitet an</p><div class="ulist"><ul><li><p>Java-Frameworks</p></li><li><p>Machine Learning</p></li></ul></div></li></ul></div></div></div>
+<div class="imageblock" style=""><img src="images/alambertz.png" alt="alambertz" height="600][pdfwidth=7cm"></div></section>
+<section id="_unternehmen"><h2>Unternehmen</h2><div class="paragraph"><p>
+<head>
+<style>
+	span.r {
+		color:#225c4d;
+	}
+	ul.bullet li::before{
+  		content: "\25CF";
+  		color: #225c4d;
+  		display: inline-block;
+  		margin-right: 20px;
+	}
+	ul.checkmark li::before{
+  		content: "\2714";
+  		color: #225c4d;
+  		display: inline-block;
+  		margin-right: 11px;
+	}
+	ul.arrow li::before{
+  		content: "\2794";
+  		color: #225c4d;
+  		display: inline-block;
+  		margin-right: 11px;
+	}
+</style>
+</head>
+<body>
+<p>
+	<div style="position:relative; top:280px;">
+		Individuelle Anwendungsentwicklung - Java Enterprise, Web, Mobile
+		<ul class="bullet" style="list-style:none;">
+			<li>seit 2005 <span class="r">&#160;&#160;&#160;♦&#160;&#160;&#160;</span> in Köln <span class="r">&#160;&#160;&#160;♦&#160;&#160;&#160;</span> für alle Branchen <span class="r">&#160;&#160;&#160;♦&#160;&#160;&#160;</span> <img style="position:relative; top:17px" src="images/anderScore/goldschmiede.png" height="60"></li>
+			<li>nach Aufwand & zum Festpreis</li>
+		</ul>
+		<div class="fragment">
+			<ul class="checkmark" style="list-style:none;">
+				<li>Digitalisierung / Prozesse / Integration</li>
+				<li>Migration</li>
+				<li>Neuentwicklung</li>
+				<li>Notfall / kritische Situationen</li>
+			</ul><br>
+			<ul class="arrow" style="list-style:none;">
+				<li>pragmatisch, zielgerichtet, zuverlässig</li>
+			</ul>
+		</div>
+	</div>
+</p>
+<p class="fragment">
+	<img style="overflow:hidden; position:relative; bottom:30px; left:830px;" src="images/anderScore/Bereiche.png" height="600">
+</p>
+<p>
+	<div class="fragment">
+		<div style="position:relative; bottom:270px;">
+		Kompletter SW Life Cycle<br>
+			<ul class="bullet" style="list-style:none;">
+				<li>Projektmanagement / agile Methodik</li>
+				<li>Anforderungsanalyse</li>
+				<li>Architektur & SW-Design</li>
+				<li>Implementierung & Testautomation</li>
+				<li>Studien & Seminare</li>
+			</ul>
+		</div>
+		<div style="position:relative; left:850px; bottom:330px; color:#225c4d; font-weight:bold">
+			... und für Sie? Sprechen Sie uns an!
+		</div>
+	</div>
+</p>
+</body>
+</p></div></section>
+<section id="_inhalt_und_ziel"><h2>Inhalt und Ziel</h2><div class="dlist"><dl><dt class="hdlist1">Workshop</dt><dd><div class="ulist"><ul><li><p>Einführung in Lasttests,</p></li><li><p>Überwindung von Einstiegshürden</p></li><li><p>Funktionen und Features werden mit Aufgaben erarbeitet</p></li></ul></div></dd><dt class="hdlist1">Zielgruppe</dt><dd><div class="ulist"><ul><li><p>IT-Projektleitende, IT-Koordinator:innen, Organisator:innen, Qualitätssichernde, Testmanager:innen, die Lasttests mit Apache JMeter durchführen möchten</p></li></ul></div></dd><dt class="hdlist1">Voraussetzungen</dt><dd><div class="ulist"><ul><li><p>Gute Kenntnisse im Bereich der Netzwerkkommunikation</p><div class="ulist"><ul><li><p>IP</p></li><li><p>HTTP vs. HTTPS</p></li><li><p>&#8230;&#8203;</p></li></ul></div></li></ul></div></dd></dl></div></section>
+<section id="_zeitplan"><h2>Zeitplan</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:50%"><col style="width:50%"></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Beginn</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">09:00 Uhr</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Kaffeepause</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">ca. 10:30 Uhr</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Mittagspause</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">12:00 bis 13:00 Uhr</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Ende</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">16:00 Uhr</p></td></tr></table></section>
+<section><section id="_remote_training"><h2>Remote Training</h2><div class="ulist"><ul><li><p>Video-Konferenz über Microsoft Teams</p><div class="ulist"><ul><li><p>Bildschirmfreigabe für Folien</p></li><li><p>Breakout Rooms für Übungen</p></li><li><p>Lautsprecher + Mikrophon benötigt, Kamera empfehlenswert</p></li></ul></div></li><li><p>Entwicklung: Remote Desktop Protocol (RDP) zur GFU</p><div class="ulist"><ul><li><p>Praktische Übungen</p></li><li><p>Ubuntu VM</p></li><li><p>Aufschaltung über Zoom möglich</p></li></ul></div></li><li><p>Material auf GitHub</p></li></ul></div></section><section id="_vereinbarungen"><h2>Vereinbarungen</h2><div class="dlist"><dl><dt class="hdlist1">Pausen</dt><dd><div class="ulist"><ul><li><p>Gemeinsam zu vorgegebenen Zeiten</p></li><li><p>Individuell während der Übungen</p></li></ul></div></dd><dt class="hdlist1">Erreichbarkeit Dozent</dt><dd><div class="ulist"><ul><li><p>Zoom (Chat, Mikrophon)</p></li><li><p>E-Mail</p></li><li><p>Handy</p></li><li><p>Kamera aus: gerade nicht anwesend bzw. ansprechbar</p></li></ul></div></dd><dt class="hdlist1">Regeln</dt><dd><div class="ulist"><ul><li><p>Mikrophon möglichst aus (Hintergrundgeräusche)</p></li><li><p>Bei Fragen: "Hand heben" oder Chat</p></li><li><p>Wenn Übung fertig, selbst in Hauptsession zurückkehren</p></li></ul></div></dd></dl></div></section></section>
+<section id="_material"><h2>Material</h2><div class="ulist"><ul><li><p>Apache JMeter<br>
+<a href="https://jmeter.apache.org/" class="bare">https://jmeter.apache.org/</a></p></li><li><p>Apache JMeter User Manual<br>
+<a href="https://jmeter.apache.org/usermanual" class="bare">https://jmeter.apache.org/usermanual</a></p></li><li><p>GitHub Apache JMeter<br>
+<a href="https://github.com/apache/jmeter" class="bare">https://github.com/apache/jmeter</a></p></li></ul></div></section>
+<section id="_vorstellung_3" class="columns"><h2>Vorstellung</h2><div class="openblock"><div class="content"><div class="paragraph heading"><p>Jetzt sind Sie dran!</p></div>
+<div class="ulist"><ul><li><p>Name</p></li><li><p>Vorwissen</p></li><li><p>Erwartungen</p></li><li><p>Themenwünsche</p></li></ul></div></div></div>
+<div class="imageblock" style="float: right"><img src="images/anybody.jpg" alt="anybody"></div></section>
+<section id="_ihre_umgebung"><h2>Ihre Umgebung</h2><div class="ulist"><ul><li><p>OpenJDK 17</p></li><li><p>Docker Community Edition</p></li></ul></div></section>
+<section id="_aufgabe_0_1"><h2>Aufgabe 0.1</h2><div class="paragraph"><p>Aufgabenstellung:</p></div>
+<div class="ulist"><ul><li><p>Verbinden Sie sich per RDP in Ihre Umgebung</p></li><li><p>Melden Sie sich an der Ubuntu VM an</p></li><li><p>Überprüfen Sie, dass OpenJDK (mind. 8) installiert ist: <code>java -version</code></p></li><li><p>Laden Sie die Unterlagen zum Kurs herunter</p></li><li><p>Blenden Sie die Index-Folie (index.html) auf</p></li></ul></div>
+<pre class="CodeRay listingblock"><code class="bash language-bash">    $ git clone git@github.com:anderscore-gmbh/jmeter-22.11.git
+    Klone nach 'jmeter-22.11' ...
+    remote: Enumerating objects: 831, done.
+    remote: Counting objects: 100% (831/831), done.
+    remote: Compressing objects: 100% (401/401), done.
+    remote: Total 831 (delta 221), reused 828 (delta 218), pack-reused 0
+    Empfange Objekte: 100% (831/831), 10.58 MiB | 2.41 MiB/s, fertig.
+    Löse Unterschiede auf: 100% (221/221), fertig.</code></pre>
+<div class="paragraph"><p><a href="index.html#/_agenda">&#8594; Zurück zur Übersicht</a></p></div></section>
+<section id="_lektion_1_einführung" data-state="no-title-footer"><h2>Lektion 1 - Einführung</h2></section>
+<section id="_was_ist_apache_jmeter"><h2>Was ist Apache JMeter?</h2><div class="imageblock" style=""><img src="images/jmeter.png" alt="jmeter" width="300"></div>
+<div class="openblock"><div class="content"><div class="ulist"><ul><li><p>open source, 100% Java Lasttest-Werkzeug</p></li><li><p>Ursprünglich zum Testen von Web Applikationen</p></li><li><p>Testpläne zur genaueren Spezifikation</p></li><li><p>HTTP, HTTPS, FTP, SOAP, JDBC Requests möglich</p></li><li><p>Entwickelt von Apache Software Foundation</p></li><li><p>Alternativen:</p><div class="ulist"><ul><li><p><a href="https://www.stresstimulus.com/">StresStimulus</a></p></li><li><p><a href="https://gatling.io/">Gatling</a></p></li><li><p><a href="https://loadninja.com/">LoadNinja (Kostenpflichtig)</a></p></li></ul></div></li></ul></div></div></div></section>
+<section id="_apache_jmeter_releases"><h2>Apache JMeter Releases</h2><table class="tableblock frame-all grid-all" style="width:100%"><colgroup><col style="width:4.5454%"><col style="width:4.5454%"><col style="width:90.9092%"></colgroup><tbody><tr><td class="tableblock halign-left valign-top"><p class="tableblock">Datum</p></td><td class="tableblock halign-center valign-top"><p class="tableblock">Version</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Neuigkeit</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">12/1998</p></td><td class="tableblock halign-center valign-top"><p class="tableblock">1.0</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Offizieller Release</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">05/2016</p></td><td class="tableblock halign-center valign-top"><p class="tableblock">3.0</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Java 7, Report Improvements, Graphs</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">02/2018</p></td><td class="tableblock halign-center valign-top"><p class="tableblock">4.0</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Java 9, Boundary Extractor, JSON Assertion, Precise Throughput Timer</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">09/2018</p></td><td class="tableblock halign-center valign-top"><p class="tableblock">5.0</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Files Upload, Live Reporting and Web Report</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">02/2019</p></td><td class="tableblock halign-center valign-top"><p class="tableblock">5.1</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Set init SQL via JDBC, JDBC QueryTimeout</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">11/2019</p></td><td class="tableblock halign-center valign-top"><p class="tableblock">5.2</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Pre-initialize connection pool in JDBC, fetch only a certain number of rows</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">05/2020</p></td><td class="tableblock halign-center valign-top"><p class="tableblock">5.3</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Dark Theme, many UX improvements</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">12/2020</p></td><td class="tableblock halign-center valign-top"><p class="tableblock">5.4</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Exclude embedded URLs, GraphQL/HTTP Request Sampler, InfluxDB BackendListener</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">12/2021</p></td><td class="tableblock halign-center valign-top"><p class="tableblock">5.4.3</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Apache log4j2 fix release</p></td></tr><tr><td class="tableblock halign-left valign-top"><p class="tableblock">06/2022</p></td><td class="tableblock halign-center valign-top"><p class="tableblock">5.5</p></td><td class="tableblock halign-left valign-top"><p class="tableblock">Java 17, log4j2 2.17.2, Open Model Thread Group</p></td></tr></table></section>
+<section id="_introducing_apache_jmeter_an_open_source_100_pure_java_load_test_application"><h2>Introducing Apache JMeter: an open source, 100% pure Java load test application</h2><div class="ulist"><ul><li><p>Performancetests auf Web Applikationen</p></li><li><p>statische und dynamische Ressourcen ansprechbar</p></li><li><p>Simulation starker Auslastung gegen</p><div class="ulist"><ul><li><p>Server / Servergruppen</p></li><li><p>Netzwerk</p></li><li><p>einzelne Objekte</p></li></ul></div></li></ul></div></section>
+<section id="_protokolle"><h2>Protokolle</h2><div class="dlist"><dl><dt class="hdlist1">Performancetests mit verschiedenen Protokolltypen möglich</dt><dd><div class="ulist"><ul><li><p>Web - HTTP, HTTPS (Java, NodeJS, PHP, ASP.NET, &#8230;&#8203;)</p></li><li><p>SOAP / REST Webservices</p></li><li><p>FTP</p></li><li><p>Database via JDBC</p></li><li><p>LDAP</p></li><li><p>Message-oriented middleware (MOM) via JMS</p></li><li><p>Mail - SMTP(S), POP3(S) and IMAP(S)</p></li><li><p>Native commands und shell scripts</p></li><li><p>TCP</p></li><li><p>Java Objects</p></li></ul></div></dd></dl></div></section>
+<section id="_gui_mode"><h2>GUI mode</h2><div class="paragraph center"><p><span class="image"><img src="images/jmeter_screen.png" alt="jmeter screen" width="1200"></span></p></div>
+<div class="ulist"><ul><li><p>IDE mit allen Features</p></li><li><p>einfache und schnelle Erstellung von Testplänen</p></li><li><p>recording, building, debugging</p></li></ul></div></section>
+<section id="_cli_mode"><h2>CLI mode</h2><div class="ulist"><ul><li><p>Ohne grafische GUI</p></li><li><p>Effizientes Ausführen der Lasttests</p></li></ul></div>
+<pre class="CodeRay listingblock"><code>jmeter -n -t test.jmx -e -o result.jtl</code></pre>
+<div class="imageblock" style=""><img src="images/jmeter_cli.png" alt="jmeter cli" width="800"></div></section>
+<section id="_html_reports"><h2>HTML Reports</h2><div class="imageblock" style=""><img src="images/jmeter_html_report.png" alt="jmeter html report" width="1000"></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="dlist"><dl><dt class="hdlist1">vollständige HTML Darstellung aller Ergebnisse</dt><dd><div class="ulist"><ul><li><p>Tabellen</p></li><li><p>Graphen</p></li></ul></div></dd></dl></div></section>
+<section id="_weiterhin"><h2>Weiterhin &#8230;&#8203;</h2><div class="ulist"><ul><li><p>Export als Text (JSON, HTML, XML, &#8230;&#8203;)</p></li><li><p>Portierbarkeit durch 100% reinen Java Code</p></li><li><p>Full Multi-Threading Framework</p></li><li><p>Caching, offline analysis, replay test results</p></li><li><p>einfach erweiterbar</p></li></ul></div></section>
+<section id="_typischer_ablauf"><h2>Typischer Ablauf</h2><div class="imageblock" style=""><img src="images/jmeter_workflow.png" alt="jmeter workflow" width="1000"></div></section>
+<section id="_bootstrapping"><h2>Bootstrapping</h2><div class="olist arabic"><ol class="arabic"><li><p><a href="https://jmeter.apache.org/download_jmeter.cgi">JMeter herunterladen (Binaries)</a></p></li><li><p>Archiv entpacken</p><pre class="CodeRay listingblock"><code>tar -xvzf apache-jmeter-5.5.tgz</code></pre></li><li><p>Ordner wechseln</p><pre class="CodeRay listingblock"><code>cd apache-jmeter-5.5</code></pre></li><li><p>JMeter starten (GUI-mode)</p><pre class="CodeRay listingblock"><code>./bin/jmeter</code></pre></li></ol></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="imageblock" style=""><img src="images/jmeter_download.png" alt="jmeter download" width="800"></div></section>
+<section id="_hello_world_web_applikation"><h2>Hello World: Web Applikation</h2><div class="paragraph heading"><p>Simpler lokaler echo-Server mit REST</p></div>
+<pre>docker run -ti --restart unless-stopped --name jmeter-rest-test -d -p 5050:5050 vad1mo/hello-world-rest</pre>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="paragraph"><p><strong>Browser:</strong> <code>localhost:5050/jmeter</code></p></div>
+<div class="imageblock" style=""><img src="images/echo.png" alt="echo" width="1000"></div></section>
+<section id="_hello_world_thread_group_erstellen"><h2>Hello World: Thread Group erstellen</h2><div class="ulist"><ul><li><p>bestimmt den User Workflow</p></li><li><p>Simuliert das Verhalten von User bei Benutzung der App</p></li><li><p>Jeder einzelne Thread repräsentiert einen User</p></li></ul></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="imageblock" style=""><img src="images/jmeter_hello_world_1.png" alt="jmeter hello world 1" width="1000"></div></section>
+<section id="_hello_world_thread_group_konfiguriern"><h2>Hello World: Thread Group konfiguriern</h2><div class="ulist"><ul><li><p><strong>Name</strong> - Name zur Identifikation</p></li><li><p><strong>Number of Threads</strong> - Anzahl der User</p></li><li><p><strong>Ramp-up Period</strong> - Alle x Sekunden kommt ein neuer User hinzu</p></li><li><p><strong>Loop Count</strong> - Wiederholungen des Tests</p></li></ul></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="imageblock" style=""><img src="images/jmeter_hello_world_2.png" alt="jmeter hello world 2" width="1000"></div></section>
+<section id="_hello_world_sampler_hinzufügen"><h2>Hello World: Sampler hinzufügen</h2><div class="ulist"><ul><li><p>Sendet Requests an den Server, wartet auf Responses</p></li><li><p>[HTTP Request] zum Ansprechen der REST-App</p></li></ul></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="imageblock" style=""><img src="images/jmeter_hello_world_3.png" alt="jmeter hello world 3" width="1000"></div></section>
+<section id="_hello_world_sampler_konfigurieren"><h2>Hello World: Sampler konfigurieren</h2><div class="ulist"><ul><li><p>Name: Name zur Identifikation</p></li><li><p>Server Name or IP: Anzusprechender Host</p></li><li><p>Port Number: Port des Hosts</p></li><li><p>HTTP Request: Weitere Parameter zum Request (z.B. Pfad, Methode, &#8230;&#8203;)</p></li></ul></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="imageblock" style=""><img src="images/jmeter_hello_world_4.png" alt="jmeter hello world 4" width="1000"></div></section>
+<section id="_hello_world_timer_hinzufügen"><h2>Hello World: Timer hinzufügen</h2><div class="ulist"><ul><li><p>Pausen zwischen Anfragen</p></li><li><p>Angabe in Millisekunden</p></li><li><p>Hier 300 ms</p></li></ul></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="imageblock" style=""><img src="images/jmeter_hello_world_5.png" alt="jmeter hello world 5" width="1000"></div></section>
+<section id="_hello_world_listener_hinzufügen"><h2>Hello World: Listener hinzufügen</h2><div class="ulist"><ul><li><p>Sammelt Responses und speichert diese</p></li><li><p>Sammelt auch Logging und Debugging Informationen</p></li><li><p>Zeigt die Ergebnisse an</p></li></ul></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="imageblock" style=""><img src="images/jmeter_hello_world_6.png" alt="jmeter hello world 6" width="1000"></div></section>
+<section id="_hello_world_lasttest_starten"><h2>Hello World: Lasttest starten</h2><div class="ulist"><ul><li><p>Mit Klick auf 'start' wird der Testplan ausgeführt</p></li><li><p>Ausführung über GUI für große Anwendungen nicht empfohlen</p></li><li><p>Alternative:</p></li></ul></div>
+<pre class="CodeRay listingblock"><code>jmeter -n -t [jmx file] -e -o [output file name]</code></pre>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="imageblock" style=""><img src="images/jmeter_hello_world_7.png" alt="jmeter hello world 7" width="1000"></div></section>
+<section id="_hello_world_ergebnisse_anschauen"><h2>Hello World: Ergebnisse anschauen</h2><div class="ulist"><ul><li><p>Klick auf 'View Results Tree' zeigt die gesammelten Daten</p></li><li><p>Alle Ergebnisse einsehbar</p></li></ul></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="imageblock" style=""><img src="images/jmeter_hello_world_8.png" alt="jmeter hello world 8" width="1000"></div></section>
+<section id="_aufgabe_1_1_jmeter_grundlagen"><h2>Aufgabe 1.1 - JMeter Grundlagen</h2><div class="paragraph heading"><p>Aufgabe 1.1 - JMeter Grundlagen</p></div>
+<div class="paragraph"><p>Erarbeiten Sie sich das Hello World Beispiel</p></div>
+<div class="ulist"><ul><li><p>Starten Sie den gezeigten echo-Server mittels Docker</p></li><li><p>Laden Sie sich JMeter herunter</p></li><li><p>Starten Sie JMeter</p></li><li><p>Erstellen Sie einen Lasttest gegen den echo-Server</p></li><li><p>Analysieren Sie das Ergebnis.</p></li></ul></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="paragraph"><p><a href="index.html#/_agenda">&#8594; Zurück zur Übersicht</a></p></div></section>
+<section id="_lektion_2_elemente_eines_testplans" data-state="no-title-footer"><h2>Lektion 2 - Elemente eines Testplans</h2><div class="paragraph text-center"><p>Welche Elemente gibt es alles?<br>
+Wie können diese konfiguriert werden?</p></div></section>
+<section id="_testplan"><h2>Testplan</h2><div class="ulist"><ul><li><p>Wurzel des Testbaums</p></li><li><p>Spezifiziert grundsätzliche Einstellungen</p><div class="ulist"><ul><li><p>Umgebungsvariablen</p></li><li><p>Threadgruppen simultan oder einzeln laufen lassen?</p></li><li><p>Funktionales Testen (Sammeln <strong>aller</strong> Antworten anstelle selbst definierter)</p></li></ul></div></li></ul></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="imageblock" style=""><img src="images/jmeter_uebersicht.png" alt="jmeter uebersicht" width="1000"></div></section>
+<section><section id="_thread_group"><h2>Thread Group</h2><div class="ulist"><ul><li><p>Einstiegspunkte</p></li><li><p>Controller für die Threads</p><div class="ulist"><ul><li><p>Anzahl an Threads (pro Thread eine Verbindung)</p></li><li><p>Ramp-up</p></li><li><p>Anzahl der Wiederholungen</p></li></ul></div></li><li><p>Thread Groups arbeiten unabhängig voneinander</p></li></ul></div><div class="imageblock" style=""><img src="images/jmeter_threadgroups.png" alt="jmeter threadgroups" width="1000"></div></section><section id="_thread_group_2"><h2>Thread Group</h2><div class="imageblock" style=""><img src="images/jmeter_hello_world_2.png" alt="jmeter hello world 2" width="1300"></div>
+<div class="paragraph"><p><a href="https://jmeter.apache.org/usermanual/component_reference.html#Thread_Group">&#8594; Guide: JMeter - Thread Group</a></p></div></section><section id="_ramp_up"><h2>Ramp-Up</h2><div class="dlist"><dl><dt class="hdlist1">Beispiel: 10 Threads, 100 Sekunden ramp-up</dt><dd><div class="ulist"><ul><li><p>Start aller 10 Threads nach 100 Sekunden</p></li><li><p>Jeder Thread startet 10 Sekunden (100/10) nach dem vorherigen</p></li></ul></div></dd></dl></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="dlist"><dl><dt class="hdlist1">Beispiel: 30 Threads, 120 Sekunden ramp-up</dt><dd><div class="ulist"><ul><li><p>Start aller 30 Threads nach 120 Sekunden</p></li><li><p>Jeder Thread startet 4 Sekunden (120/30) nach dem vorherigen</p></li></ul></div></dd></dl></div></section><section id="_starten"><h2>Starten</h2><div class="imageblock" style=""><img src="images/jmeter_threadgroups_start.png" alt="jmeter threadgroups start" width="800"></div>
+<div class="ulist"><ul><li><p><strong>Start:</strong> Selektierte Thread Group starten</p></li><li><p><strong>Start no pauses:</strong> Selektierte Thread Group ohne Timer starten</p></li><li><p><strong>Validate:</strong> Minimales Starten der Thread Group (1 Thread, 1 Iteration, keine Timer)</p></li></ul></div></section><section id="_variationen"><h2>Variationen</h2><div class="imageblock" style=""><img src="images/jmeter_threadgroups_variations.png" alt="jmeter threadgroups variations" width="1300"></div>
+<div class="ulist"><ul><li><p><strong>setUp:</strong> Ausführung vor den Tests</p></li><li><p><strong>tearDown:</strong> Ausführung nach den Tests</p></li><li><p><strong>open model:</strong> Variable Anzahl an Threads (noch experimentell, <a href="https://jmeter.apache.org/usermanual/component_reference.html#Open_Model_Thread_Group">&#8594; Dokumentation</a>)</p></li></ul></div></section></section>
+<section><section id="_samplers" class="columns"><h2>Samplers</h2><div class="openblock"><div class="content"><div class="ulist"><ul><li><p><strong>Müssen unterhalb</strong> einer Thread Group definiert werden</p></li><li><p>Senden Requests, empfangen Responses</p></li><li><p>Der Reihenfolge des Auftretens im Testbaum nach ausgeführt</p></li><li><p>Gruppiert und einzeln konfigurierbar</p></li><li><p>Sammeln verschiedenste Ergebnisse:</p><div class="ulist"><ul><li><p>Success/Fail</p></li><li><p>Antwortzeit</p></li><li><p>Größe der empfangenen Daten</p></li><li><p>&#8230;&#8203;</p></li></ul></div></li></ul></div></div></div><div class="paragraph"><p><span class="image"><img src="images/sampler_artwork.jpg" alt="sampler artwork" height="300"></span></p></div></section><section id="_verfügbare_samplers"><h2>Verfügbare Samplers</h2><div class="imageblock" style=""><img src="images/samplers.png" alt="samplers" width="1000"></div>
+<div class="paragraph"><p><a href="https://jmeter.apache.org/usermanual/component_reference.html#samplers">&#8594; Guide: JMeter - Samplers</a></p></div></section><section id="_http_request_sampler"><h2>HTTP Request Sampler</h2><div class="ulist"><ul><li><p>Sendet HTTP/HTTPS Requests</p></li><li><p>Dateien anhängbar</p></li><li><p>Vom Webserver empfangen:</p><div class="ulist"><ul><li><p>Bilder</p></li><li><p>Java-Applets</p></li><li><p>Stylesheets sowie referenzierte Resourcen</p></li><li><p>Externe Skripte</p></li><li><p>frames, iframes</p></li><li><p>Hintergrundbilder (body, table, TD, TR)</p></li><li><p>Hintergrundsounds</p></li></ul></div></li></ul></div></section><section id="_http_request_sampler_limitierungen"><h2>HTTP Request Sampler - Limitierungen</h2><div class="ulist"><ul><li><p>Verhalten zu Connection re-use ungewiss</p></li><li><p>Kerberos Authentifizierung nicht möglich</p></li><li><p>Virtuelle Hosts nicht unterstützt</p></li><li><p>Nur GET, POST, HEAD, OPTIONS, PUT, DELETE und TRACE als Methode erlaubt</p></li></ul></div></section></section>
+<section><section id="_logic_controllers" class="columns"><h2>Logic Controllers</h2><div class="openblock"><div class="content"><div class="ulist"><ul><li><p><strong>Müssen unterhalb</strong> einer Thread Group definiert werden</p></li><li><p>Steuern die Verarbeitung eines Tests</p></li><li><p>Definieren von Logik</p></li><li><p>Können die Ausführreihenfolge von Sampler ändern</p></li><li><p>Auch Loops möglich</p></li></ul></div></div></div><div class="paragraph"><p><span class="image"><img src="images/dea.png" alt="dea"></span></p></div></section><section id="_verfügbare_logic_controller"><h2>Verfügbare Logic Controller</h2><div class="imageblock" style=""><img src="images/logic_controllers.png" alt="logic controllers" height="600"></div>
+<div class="paragraph"><p><a href="https://jmeter.apache.org/usermanual/component_reference.html#logic_controllers">&#8594; Guide: JMeter - Logic Controllers</a></p></div></section><section id="_beispiel"><h2>Beispiel</h2><div class="imageblock" style=""><img src="images/logic_controllers_example.png" alt="logic controllers example" height="400"></div>
+<div class="paragraph"><p><strong>Reihenfolge:</strong> Login &#8594; Load Search Page &#8594; Search "A" &#8594; Load &#8594; Search "B" [&#8594; Load &#8594; Search "A" &#8594; &#8230;&#8203;]</p></div></section></section>
+<section id="_aufgabe_2_1_sampler_und_logic_controllers"><h2>Aufgabe 2.1: Sampler und Logic Controllers</h2><div class="paragraph"><p>Erstellt einen Lasttest gegen den echo-Webserver. Dabei soll folgendes eingehalten werden:</p></div>
+<div class="ulist"><ul><li><p>Es sollen bis zu 50 Nutzer simuliert werden</p></li><li><p>0.2 Sekunden nach dem vorherigen Nutzer startet ein neuer Nutzer seine Anfragen</p></li><li><p>Jeder Nutzer soll sich einmalig anmelden (Simuliert durch localhost:5050/login)</p></li><li><p>Anschließend tätigt der Nutzer insgesamt 50 zufällig verteilte GET-Requests gegen die Ressourcen <code>/hello</code> und <code>/world</code></p></li><li><p>Untersuchen Sie weitere Sampler / Logic Controller auf ihre Funktionsweisen.</p></li></ul></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="paragraph"><p><strong>Hinweise:</strong></p></div>
+<div class="ulist"><ul><li><p>Fügen Sie der Thread Group zur Betrachtung der Ergebnisse einen <code>Summary Report</code> hinzu (add &#8594; Listener &#8594; Summary Report)</p></li><li><p>Versuchen Sie fernen, den Test über das <a href="http://localhost:8071/lesson01-intro.html#/_hello_world_lasttest_starten">CLI</a> zu starten</p></li><li><p>Bislang tätigt jeder Nutzer seine 51 Anfragen und hört dann auf. Wie kann dafür gesorgt werden, dann dieser Nutzer immer von vorne beginnt?</p></li></ul></div></section>
+<section><section id="_listeners" class="center"><h2>Listeners</h2><div class="ulist"><ul><li><p>Bereitstellung von Informationen</p></li><li><p>Auf beliebiger Ebene</p><div class="ulist"><ul><li><p>Testplan-Ebene: Sammeln der Daten von <strong>allen</strong> Sampler</p></li><li><p>Thread-Group-Ebene: Alles, was der Thread Group zugehörig ist</p></li><li><p>&#8230;&#8203;</p></li></ul></div></li><li><p>Speicherung als CSV oder XML möglich</p></li></ul></div><div class="imageblock" style=""><img src="images/ear.jpeg" alt="ear" height="400"></div></section><section id="_verfügbare_listeners"><h2>Verfügbare Listeners</h2><div class="imageblock" style=""><img src="images/listeners.png" alt="listeners" height="600"></div>
+<div class="paragraph"><p><a href="https://jmeter.apache.org/usermanual/component_reference.html#listeners">&#8594; Guide: JMeter - Listeners</a></p></div></section><section id="_ergebnispräsentation"><h2>Ergebnispräsentation</h2><div class="paragraph"><p><strong>Alle</strong> Listener sammeln <strong>alle</strong> Daten von den Sampler ein. Einziger Unterschied: die Repräsentation</p></div>
+<div class="ulist"><ul><li><p>Graph Results: Plotten der Ergebnisse als Graph</p></li><li><p>View Result Tree: Details zu Sampler Requests und Responses als HTML oder XML</p></li><li><p>Summary Report: Stochastische Kenngrößen zu Sampler Requests und Responses</p></li></ul></div></section><section id="_performance"><h2>Performance</h2><div class="dlist"><dl><dt class="hdlist1">Viele Listener sind aufwendig</dt><dd><p><strong>&#8594;</strong> Hoher Speicherverbrauch</p><div class="paragraph"><p><strong>&#8594;</strong> Hohe CPU Auslastung</p></div>
+<div class="paragraph"><p><strong>&#8594;</strong> Verfälschte Ergebnisse</p></div></dd></dl></div>
+<div class="imageblock" style=""><img src="images/listeners_performance.png" alt="listeners performance" height="400"></div>
+<div class="paragraph"><p><strong>&#8594;</strong> Besser: Abspeichern der Ergebnisse, Darstellung hinterher (Simple Data Writer)</p></div></section></section>
+<section id="_timers" class="columns"><h2>Timers</h2><div class="openblock"><div class="content"><div class="imageblock" style=""><img src="images/timers.png" alt="timers" height="420"></div></div></div>
+<div class="ulist"><ul><li><p>Pause <strong>vor</strong> Samplers im Scope</p></li><li><p>Simulieren "Bedenkzeit" von Nutzer</p></li><li><p>Addition bei mehreren Timer</p></li><li><p>Beispiele:</p><div class="ulist"><ul><li><p>Constant Timer: Festgelegte Zeit (default 300 ms)</p></li><li><p>Uniform Random Timer: Gleichverteilt zufällig</p></li><li><p>Gaussian Random Timer: Normalverteilt zufällig</p></li><li><p>Synchronizing Timer: Warten, bis x Threads warten</p></li></ul></div></li></ul></div>
+<div class="paragraph"><p><a href="https://jmeter.apache.org/usermanual/component_reference.html#timers">&#8594; Guide: JMeter - Timers</a></p></div></section>
+<section id="_assertions" class="columns"><h2>Assertions</h2><div class="openblock"><div class="content"><div class="ulist"><ul><li><p>Asserts auf Responses <strong>nach</strong> Sampler im Scope</p></li><li><p>"Testen" auf Richtigkeit</p></li><li><p>Auch direkt einem Sampler unterordbar</p></li><li><p>Beispiele:</p><div class="ulist"><ul><li><p>Response Assertion: Check auf Patterns</p></li><li><p>Size Assertion: Länge des Responses</p></li><li><p>HTML Assertion: HTML Syntax</p></li></ul></div></li><li><p>Assertion Listener, einsehen der Ergebnisse</p></li></ul></div>
+<div class="paragraph"><p><a href="https://jmeter.apache.org/usermanual/component_reference.html#assertions">&#8594; Guide: JMeter - Assertions</a></p></div></div></div>
+<div class="imageblock" style=""><img src="images/assertions.png" alt="assertions" height="500"></div></section>
+<section><section id="_configuration_elements" class="columns"><h2>Configuration Elements</h2><div class="openblock"><div class="content"><div class="imageblock" style=""><img src="images/configuration_elements.png" alt="configuration elements" height="475"></div></div></div><div class="ulist"><ul><li><p>Modifikation von Request</p></li><li><p>Hierarchie: Spezifische Configs überschreiben generische</p></li><li><p>Typische Anwendung:</p><div class="ulist"><ul><li><p>Generisches Setzen einer Ziel-URL</p></li><li><p>Setzen von HTTP Header</p></li><li><p>Setzen von Cookies</p></li><li><p>JDBC konfigurieren</p></li></ul></div></li></ul></div><div class="paragraph"><p><a href="https://jmeter.apache.org/usermanual/component_reference.html#config_elements">&#8594; Guide: JMeter - Assertions</a></p></div></section><section id="_configuration_elements_http_request_defaults"><h2>Configuration Elements: HTTP Request Defaults</h2><div class="imageblock" style=""><img src="images/configuration_elements_http_request_default.png" alt="configuration elements http request default" height="400"></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="ulist"><ul><li><p>Request Defaults</p></li><li><p>Alle Sampler nutzen hier definierte Einstellungen (wenn nicht spezifischer definiert)</p></li></ul></div></section><section id="_configuration_elements_http_cookie_manager"><h2>Configuration Elements: HTTP Cookie Manager</h2><div class="imageblock" style=""><img src="images/configuration_elements_http_cookie_manager.png" alt="configuration elements http cookie manager" height="400"></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="ulist"><ul><li><p>Setzen von Cookies</p></li><li><p>Alle Sampler nutzen hier definierte Cookies (wenn nicht spezifischer definiert)</p></li></ul></div></section></section>
+<section id="_aufgabe_2_2_listeners_timers_assertions_und_configuration_elements"><h2>Aufgabe 2.2: Listeners, Timers, Assertions und Configuration Elements</h2><div class="paragraph"><p>Erweitern Sie den vorherigen Lasttest um folgende Funktionalitäten:</p></div>
+<div class="ulist"><ul><li><p>Jede <code>/hello</code> und <code>/world</code> Request soll in 5er Gruppen gestellt werden (Timeout 100ms)</p></li><li><p>Fügen Sie passende Configurations hinzu, um im Falle einer Adressänderung (z.B. anderer Port) nicht alle Sampler anpassen zu müssen</p></li><li><p>Machen Sie sinnvolle Assertions auf die Responses</p></li><li><p>Testen Sie verschiedenste Listener</p></li><li><p>Untersuchen Sie weitere Configuration Elements und ihre Funktionsweise</p></li></ul></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="paragraph"><p><strong>Hinweise:</strong></p></div>
+<div class="ulist"><ul><li><p>Mit einem <code>View Results Tree</code>-Listener sind Responses einsehbar um dann weitere Testfälle feststellen zu können</p></li><li><p>Denken Sie daran, einen <code>Assertion Result</code>-Listener hinzuzufügen, um die Ergebnisse der Assertions betrachten zu können</p></li><li><p>Versuchen Sie fernen, den Test über das <a href="http://localhost:8071/lesson01-intro.html#/_hello_world_lasttest_starten">CLI</a> zu starten</p></li></ul></div>
+<div class="paragraph"><p><a href="index.html#/_agenda">&#8594; Zurück zur Übersicht</a></p></div></section>
+<section id="_pre_processor_elements"><h2>Pre-Processor Elements</h2><div class="ulist"><ul><li><p>Ausführung <strong>vor</strong> Sampler</p></li><li><p>Typische Anwendung:</p><div class="ulist"><ul><li><p>Modifikation eines Samplers</p></li><li><p>Update von Variablen</p></li><li><p>URL abändern</p></li></ul></div></li></ul></div>
+<div class="imageblock" style=""><img src="images/pre-processor.png" alt="pre processor" height="500"></div></section>
+<section id="_post_processor_elements"><h2>Post-Processor Elements</h2><div class="ulist"><ul><li><p>Ausführung <strong>nach</strong> Sampler</p></li><li><p>Typische Anwendung:</p><div class="ulist"><ul><li><p>Verarbeitung des Responses</p></li><li><p>Werte extrahieren</p></li></ul></div></li></ul></div>
+<div class="imageblock" style=""><img src="images/post-processor.png" alt="post processor" height="500"></div></section>
+<section id="_reihenfolge_der_auswertung" class="columns"><h2>Reihenfolge der Auswertung</h2><div class="openblock"><div class="content"><div class="paragraph"><p><strong>Priorisierung der Elemente:</strong></p></div>
+<div class="olist arabic"><ol class="arabic" start="0"><li><p>Configuration elements</p></li><li><p>Pre-Processors</p></li><li><p>Timers</p></li><li><p>Sampler</p></li><li><p>Post-Processors</p></li><li><p>Assertions</p></li><li><p>Listeners</p></li></ol></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="paragraph"><p><strong>Wie wäre hier die Reihenfolge?</strong></p></div></div></div>
+<div class="paragraph"><p><span class="image"><img src="images/execution_sample.png" alt="execution sample" height="400"></span></p></div></section>
+<section id="_reihenfolge_der_auswertung_2" class="columns"><h2>Reihenfolge der Auswertung</h2><div class="openblock"><div class="content"><pre class="CodeRay listingblock"><code>Pre-Processor 1
+
+Timer 1
+
+Timer 2
+
+Sampler 1
+
+Post-Processor 1
+
+Post-Processor 2
+
+Assertion 1</code></pre>
+<div class="paragraph"><p>&#160;</p></div>
+<pre class="CodeRay listingblock"><code>Pre-Processor 1
+
+Timer 1
+
+Timer 2
+
+Sampler 2
+
+Post-Processor 1
+
+Post-Processor 2
+
+Assertion 1</code></pre>
+<div class="paragraph"><p><a href="index.html#/_agenda">&#8594; Zurück zur Übersicht</a></p></div></div></div>
+<div class="imageblock" style=""><img src="images/execution_sample.png" alt="execution sample" height="500"></div></section>
+<section id="_lektion_3_anwendungsbasierte_testpläne_erstellen" data-state="no-title-footer"><h2>Lektion 3 - Anwendungsbasierte Testpläne erstellen</h2><div class="paragraph text-center"><p>Wie sehen komplexere Testpläne aus?<br>
+User-Login, Sessions, LDAP, &#8230;&#8203;?</p></div></section>
+<section><section id="_testplan_user_login"><h2>Testplan: User-Login</h2><div class="ulist"><ul><li><p>Viele Ressourcen nur als angemeldeter Nutzer zugänglich</p></li><li><p>Weboberfläche: Formular</p></li><li><p>JMeter: POST-HTTP-Request</p></li></ul></div><div class="paragraph"><p>&#160;</p></div><div class="imageblock" style=""><img src="images/http_login.png" alt="http login" height="500"></div></section><section id="_http_authorization_manager"><h2>HTTP Authorization Manager</h2><div class="imageblock" style=""><img src="images/http_authorization_manager.png" alt="http authorization manager" height="700"></div></section></section>
+<section id="_testplan_sessions" class="columns"><h2>Testplan: Sessions</h2><div class="openblock"><div class="content"><div class="ulist"><ul><li><p>Nach einen Login: weitere Requests als authentifizierter User stellen</p></li><li><p>Ohne Session-Management: Ständig erneute Logins nötig</p></li><li><p>2 Möglichkeiten basierend auf die Applikation:</p><div class="ulist"><ul><li><p>Session-Cookies: HTTP Header Manager</p></li><li><p>URL Rewriting: HTTP URL Re-writing Modifier</p></li></ul></div></li></ul></div></div></div>
+<div class="imageblock" style=""><img src="images/login.png" alt="login" height="350"></div></section>
+<section id="_testplan_sessions_session_cookies"><h2>Testplan: Sessions - Session-Cookies</h2><div class="paragraph"><p><strong>HTTP Header Manager</strong></p></div>
+<div class="ulist"><ul><li><p>Setzen der Session per HTTP Header</p></li></ul></div>
+<div class="imageblock" style=""><img src="images/http_header_manager.png" alt="http header manager" height="600"></div></section>
+<section id="_testplan_sessions_url_rewriting" class="columns"><h2>Testplan: Sessions - URL Rewriting</h2><div class="openblock"><div class="content"><div class="ulist"><ul><li><p>Erhalten der Session ID vom Server</p></li><li><p>URL muss angepasst werden</p></li><li><p><strong>HTTP URL Rewriting Modifier</strong></p></li><li><p>Name der Session ID angeben</p></li><li><p>JMeter erkennt diese automatisch</p></li></ul></div></div></div>
+<div class="imageblock" style=""><img src="images/http_url_rewriting_modifier.png" alt="http url rewriting modifier" height="400"></div>
+<div class="paragraph"><p><a href="index.html#/_agenda">&#8594; Zurück zur Übersicht</a></p></div></section>
+<section id="_lektion_4_tests_gegen_verteilte_systeme_server_mode" data-state="no-title-footer"><h2>Lektion 4 -Tests gegen verteilte Systeme / Server Mode</h2><div class="paragraph text-center"><p>Wie sehen komplexere Testpläne aus?<br>
+User-Login, Sessions, LDAP, &#8230;&#8203;?</p></div></section>
+<section id="_lektion_5_best_practices_zu_jmeter" data-state="no-title-footer"><h2>Lektion 5 - Best Practices zu JMeter</h2><div class="paragraph text-center"><p>Worauf sollte immer geachtet werden?</p></div></section>
+<section id="_best_practices_14"><h2>Best Practices (1/4)</h2><div class="dlist"><dl><dt class="hdlist1">Anzahl der Threads geschickt wählen</dt><dd><div class="ulist"><ul><li><p>Anzahl der Threads stark an Hardware gekoppelt (Server, Testrechner)</p></li><li><p>Zu wenige Threads: Wenig aussagekräftige Lasttests</p></li><li><p>Zu viele Threads: Abarbeitug der Anfragen kommt nicht hinterher &#8594; Coordinated Omission</p></li><li><p>Bei large-scale Tests: Weniger Threads mit mehreren CLI Jmeter Instanzen auf mehreren Maschinen.</p></li></ul></div></dd></dl></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="dlist"><dl><dt class="hdlist1">Geschickte Platzierung von Cookie Manager</dt><dd><div class="ulist"><ul><li><p>Unterhalb der Thread Groups</p><div class="paragraph"><p><strong>&#8594;</strong> Jeder Thread hat eigene Cookies</p></div>
+<div class="paragraph"><p><strong>&#8594;</strong> Unter den Sampler teilen sich die Cookies</p></div></li></ul></div></dd></dl></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="dlist"><dl><dt class="hdlist1">Geschickte Platzierung von Authorization Manager</dt><dd><div class="ulist"><ul><li><p>Wie der Cookie Manager</p></li></ul></div></dd></dl></div></section>
+<section id="_best_practices_24"><h2>Best Practices (2/4)</h2><div class="dlist"><dl><dt class="hdlist1">HTTP(S) Test Script Recorder verwenden</dt><dd><div class="ulist"><ul><li><p>JMeter erkennt browsing durchs Internet</p><div class="paragraph"><p><strong>&#8594;</strong> JMeter erstellt automatisch den Testplan</p></div></li></ul></div></dd></dl></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="dlist"><dl><dt class="hdlist1">Mehrere Benutzer als CSV abspeichern</dt><dd><div class="ulist"><ul><li><p>Textfile mit user names und passwords, getrennt durch Komma</p></li><li><p>CSV DataSet Configuration, Werte auf USER und PASS setzen</p></li><li><p>In Sampler: ${USER} und ${PASS} nutzen</p></li></ul></div></dd></dl></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="dlist"><dl><dt class="hdlist1">Tests parametrisieren</dt><dd><div class="ulist"><ul><li><p>Beispiel: Anzahl der Threads durch einen Parameter festlegen anstatt hard codieren</p></li></ul></div></dd></dl></div></section>
+<section id="_best_practices_34"><h2>Best Practices (3/4)</h2><div class="dlist"><dl><dt class="hdlist1">Verwendete Resourcen minimieren</dt><dd><div class="ulist"><ul><li><p>CLI mode benuzten: <code>jmeter -n -t test.jmx -l test.jtl</code></p></li><li><p>Weniger Listener benutzen</p></li><li><p>Aufwendige Listener nur zu Debug-Zwecken</p></li><li><p>Besser Loops und Variablen statt viele ähnliche Sampler</p></li><li><p>CSV Output statt XML Output</p></li><li><p>Wenige Assertions verwenden</p></li></ul></div></dd></dl></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="dlist"><dl><dt class="hdlist1">Properties-File managen</dt><dd><div class="ulist"><ul><li><p>keine Properties in jmeter.properties ändern</p></li><li><p>Besser: Kopie der Propertie in user.properties einfügen und dort anpassen</p></li></ul></div></dd></dl></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="dlist"><dl><dt class="hdlist1">JSR223 Elemente verwenden</dt><dd><div class="ulist"><ul><li><p>Performancereichste Skriptsprache zu JMeter</p></li></ul></div></dd></dl></div></section>
+<section id="_best_practices_44"><h2>Best Practices (4/4)</h2><div class="dlist"><dl><dt class="hdlist1">Aktuellste JMeter Version verwenden</dt><dd><div class="ulist"><ul><li><p>Performance von JMeter wird stetig verbessert</p></li><li><p>Patch Notes informieren über Verbesserungen und neue Elemente</p></li></ul></div></dd></dl></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="dlist"><dl><dt class="hdlist1">Keine veralteten Elemente nutzen</dt><dd><div class="ulist"><ul><li><p>Veraltete Elemente haben oftmals geringere Performance</p></li><li><p>Werden durch Neue ersetzt</p></li></ul></div></dd></dl></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="dlist"><dl><dt class="hdlist1">Variablen zwischen Threads und Thread Groups teilen</dt><dd><div class="ulist"><ul><li><p>Variablen sind normalerweise an Thread gebunden</p></li><li><p>Speichern als Propertie oder in externes File zum sharen</p></li></ul></div></dd></dl></div>
+<div class="paragraph"><p>&#160;</p></div>
+<div class="paragraph"><p><a href="index.html#/_agenda">&#8594; Zurück zur Übersicht</a></p></div></section></div></div><script src="reveal.js-3.9.2/lib/js/head.min.js"></script><script src="reveal.js-3.9.2/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
+Reveal.initialize({
+  // Display controls in the bottom right corner
+  controls: true,
+  // Display a presentation progress bar
+  progress: true,
+  // Display the page number of the current slide
+  slideNumber: true,
+  // Push each slide change to the browser history
+  history: true,
+  // Enable keyboard shortcuts for navigation
+  keyboard: true,
+  // Enable the slide overview mode
+  overview: true,
+  // Vertical centering of slides
+  center: true,
+  // Enables touch navigation on devices with touch input
+  touch: true,
+  // Loop the presentation
+  loop: false,
+  // Change the presentation direction to be RTL
+  rtl: false,
+  // Turns fragments on and off globally
+  fragments: true,
+  // Flags if the presentation is running in an embedded mode,
+  // i.e. contained within a limited portion of the screen
+  embedded: false,
+  // Number of milliseconds between automatically proceeding to the
+  // next slide, disabled when set to 0, this value can be overwritten
+  // by using a data-autoslide attribute on your slides
+  autoSlide: 0,
+  // Stop auto-sliding after user input
+  autoSlideStoppable: true,
+  // Enable slide navigation via mouse wheel
+  mouseWheel: true,
+  // Hides the address bar on mobile devices
+  hideAddressBar: true,
+  // Opens links in an iframe preview overlay
+  previewLinks: false,
+  // Theme (e.g., beige, black, league, night, serif, simple, sky, solarized, white)
+  // NOTE setting the theme in the config no longer works in reveal.js 3.x
+  //theme: Reveal.getQueryHash().theme || 'anderscore',
+  // Transition style (e.g., none, fade, slide, convex, concave, zoom)
+  transition: Reveal.getQueryHash().transition || 'linear',
+  // Transition speed (e.g., default, fast, slow)
+  transitionSpeed: 'default',
+  // Transition style for full page slide backgrounds (e.g., none, fade, slide, convex, concave, zoom)
+  backgroundTransition: 'fade',
+  // Number of slides away from the current that are visible
+  viewDistance: 3,
+  // Parallax background image (e.g., "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'")
+  parallaxBackgroundImage: '',
+  // Parallax background size in CSS syntax (e.g., "2100px 900px")
+  parallaxBackgroundSize: '',
+
+  // The "normal" size of the presentation, aspect ratio will be preserved
+  // when the presentation is scaled to fit different resolutions. Can be
+  // specified using percentage units.
+  width: 1728,
+  height: 972,
+
+  // Factor of the display size that should remain empty around the content
+  margin: 0.1,
+
+  // Bounds for smallest/largest possible scale to apply to content
+  minScale: 0.2,
+  maxScale: 1.5,
+
+  // Optional libraries used to extend on reveal.js
+  dependencies: [
+      { src: 'reveal.js-3.9.2/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/title-footer/title-footer.js', async: true, callback: function()
+          {title_footer.initialize('Lasttests mit Apache JMeter', 'J. Lühr, A. Lam.', 'anderScore GmbH • Frankenwerft 35 • 50667 Köln');}},
+      { src: 'reveal.js-3.9.2/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js-3.9.2/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      
+      { src: 'reveal.js-3.9.2/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'reveal.js-3.9.2/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+  ]
+});</script></body></html>
